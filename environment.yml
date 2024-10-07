@@ -1,0 +1,11 @@
+name: crs-lecture
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - matplotlib=3.9.2
+  - shapely=2.0.5
+  - cartopy=0.22.0
+  - pystac-client=0.8.3
+  - jupyterlab=4.2.5

@@ -1,0 +1,21 @@
+FROM continuumio/miniconda3:24.7.1-0
+
+# Create a conda env with JupyterLab installed
+RUN conda create -n myenv numpy=1.25.0 jupyterlab=3.6.3
+
+# Activate the Conda environment
+RUN echo "conda activate myenv" >> ~/.bashrcc
+ENV PATH="$PATH:/opt/conda/envs/myenv/bin"
+
+# Create a non-root user and switch to that user
+RUN useradd -m jupyteruser
+USER jupyteruser
+
+# Set the working directory to /home/jupyter
+WORKDIR /home/jupyteruser
+
+# Expose the JupyterLab port
+EXPOSE 8888
+
+# Start JupyterLab
+CMD ["jupyter", "lab", "--ip=0.0.0.0"]
